@@ -1196,7 +1196,9 @@ function Renderer(container) {
         TextureImageLoader.prototype.loadTexture = function(src, texture, callback) {
             this.texture = texture;
             this.callback = callback;
-            this.image.src = src;
+            this.image.src = globalParams.imageSrcFormatter 
+                                ? globalParams.imageSrcFormatter(src)
+                                : src
         };
 
         function PendingTextureRequest(node, src, texture, callback) {

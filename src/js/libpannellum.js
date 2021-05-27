@@ -1196,8 +1196,8 @@ function Renderer(container) {
         TextureImageLoader.prototype.loadTexture = function(src, texture, callback) {
             this.texture = texture;
             this.callback = callback;
-            this.image.src = globalParams.imageSrcCallback 
-                                ? globalParams.imageSrcCallback(src)
+            this.image.src = globalParams.imageSrcFormatter 
+                                ? globalParams.imageSrcFormatter(src)
                                 : src
         };
 

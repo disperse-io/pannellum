@@ -115,7 +115,7 @@ var defaultConfig = {
     touchPanSpeedCoeffFactor: 1,
     capturedKeyNumbers: [16, 17, 27, 37, 38, 39, 40, 61, 65, 68, 83, 87, 107, 109, 173, 187, 189],
     friction: 0.15,
-    imageSrcCallback: null
+    imageSrcFormatter: null
 };
 
 // Translatable / configurable strings
@@ -1782,7 +1782,7 @@ function renderInit() {
             params.horizonRoll = config.horizonRoll * Math.PI / 180;
         if (config.backgroundColor !== undefined)
             params.backgroundColor = config.backgroundColor;
-        params.imageSrcCallback = config.imageSrcCallback;
+        params.imageSrcFormatter = config.imageSrcFormatter;
         renderer.init(panoImage, config.type, config.dynamic, config.haov * Math.PI / 180, config.vaov * Math.PI / 180, config.vOffset * Math.PI / 180, renderInitCallback, params);
         if (config.dynamic !== true) {
             // Allow image to be garbage collected

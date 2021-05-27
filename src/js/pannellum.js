@@ -1657,7 +1657,7 @@ function render() {
             compass.style.transform = 'rotate(' + (-config.yaw - config.northOffset) + 'deg)';
             compass.style.webkitTransform = 'rotate(' + (-config.yaw - config.northOffset) + 'deg)';
         }
-        fireEvent('renderFinished', {pitch: _this.getPitch(), yaw: _this.getYaw(), hfov: _this.getHfov()})
+        fireEvent('renderFinished', {sceneId: config.scene, pitch: _this.getPitch(), yaw: _this.getYaw(), hfov: _this.getHfov() });
     }
 }
 

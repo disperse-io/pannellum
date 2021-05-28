@@ -1855,12 +1855,19 @@ function createHotSpot(hs) {
     hs.pitch = Number(hs.pitch) || 0;
     hs.yaw = Number(hs.yaw) || 0;
 
-    var div = document.createElement('div');
-    div.className = 'pnlm-hotspot-base';
+    var classNames = 'pnlm-hotspot-base';
     if (hs.cssClass)
-        div.className += ' ' + hs.cssClass;
+        classNames += ' ' + hs.cssClass;
     else
-        div.className += ' pnlm-hotspot pnlm-sprite pnlm-' + escapeHTML(hs.type);
+        classNames += ' pnlm-hotspot pnlm-sprite pnlm-' + escapeHTML(hs.type);
+
+    var div;
+    if (hs.hasOwnProperty('createHotSpotFunc')) {
+        div = hs.createHotSpotFunc();
+    } else {
+        var div = document.createElement('div');
+    }
+    div.className = classNames;
 
     var span = document.createElement('span');
     if (hs.text)

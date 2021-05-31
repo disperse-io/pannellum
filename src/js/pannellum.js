@@ -1657,7 +1657,10 @@ function render() {
             compass.style.transform = 'rotate(' + (-config.yaw - config.northOffset) + 'deg)';
             compass.style.webkitTransform = 'rotate(' + (-config.yaw - config.northOffset) + 'deg)';
         }
-        fireEvent('renderFinished', {sceneId: config.scene, pitch: _this.getPitch(), yaw: _this.getYaw(), hfov: _this.getHfov() });
+        // cf L1546 - these attributes don't exist immediately
+        if (_this.getPitch && _this.getYaw && _this.getHfov) {
+            fireEvent('renderFinished', {sceneId: config.scene, pitch: _this.getPitch(), yaw: _this.getYaw(), hfov: _this.getHfov() });
+        }
     }
 }
 

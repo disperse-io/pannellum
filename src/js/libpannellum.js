@@ -1289,6 +1289,9 @@ function Renderer(container) {
         processNextTile = function(node) {
             // Since web worker is created from a Blob, we need the absolute URL
             var path = new URL(node.path + '.' + image.extension, window.location).href;
+            if (globalParams.imageSrcFormatter){
+                path = globalParams.imageSrcFormatter(path, image);
+            }
             texturesLoading[path] = node;
             worker.postMessage([path, globalParams.crossOrigin]);
         };

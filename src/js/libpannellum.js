@@ -44,6 +44,7 @@ function Renderer(container) {
     var texCoordBuffer, cubeVertBuf, cubeVertTexCoordBuf, cubeVertIndBuf;
     var globalParams;
     var sides = ['f', 'b', 'u', 'd', 'l', 'r'];
+    var worker;
 
     /**
      * Initialize renderer.
@@ -530,6 +531,9 @@ function Renderer(container) {
      * @instance
      */
     this.destroy = function() {
+        if (worker !== undefined) {
+            worker.terminate();
+        }
         if (container !== undefined) {
             if (canvas !== undefined && container.contains(canvas)) {
                 container.removeChild(canvas);
@@ -1263,9 +1267,9 @@ function Renderer(container) {
                 });
             };
         }
-        var workerFuncBlob = new Blob(['(' + workerFunc.toString() + ')()'], {type: 'application/javascript'}),
-            worker = new Worker(URL.createObjectURL(workerFuncBlob)),
-            texturesLoading = {};
+        var workerFuncBlob = new Blob(['(' + workerFunc.toString() + ')()'], {type: 'application/javascript'});
+        worker = new Worker(URL.createObjectURL(workerFuncBlob));
+        var texturesLoading = {};
         worker.onmessage = function(e) {
             var path = e.data[0],
                 success = e.data[1],

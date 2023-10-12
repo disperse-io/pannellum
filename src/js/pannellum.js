@@ -164,19 +164,6 @@ var dragFix = document.createElement('div');
 dragFix.className = 'pnlm-dragfix';
 uiContainer.appendChild(dragFix);
 
-// Display about information on right click
-var aboutMsg = document.createElement('span');
-aboutMsg.className = 'pnlm-about-msg';
-var aboutMsgLink = document.createElement('a');
-aboutMsgLink.href = 'https://pannellum.org/';
-aboutMsgLink.textContent = 'Pannellum';
-aboutMsg.appendChild(aboutMsgLink);
-var aboutMsgVersion = document.createElement('span');
-// VERSION PLACEHOLDER FOR BUILD
-aboutMsg.appendChild(aboutMsgVersion);
-uiContainer.appendChild(aboutMsg);
-dragFix.addEventListener('contextmenu', aboutMessage);
-
 // Create info display
 var infoDisplay = {};
 
